@@ -15,6 +15,13 @@ function authora_public_scripts(){
         defined('WP_DEBUG') && WP_DEBUG ? time() : AUTHORA_LOGIN_VERSION
     );
 
+    wp_enqueue_style(
+        'authora-spinner',
+        AUTHORA_LOGIN_CSS . 'spinner.css',
+        [],
+        defined('WP_DEBUG') && WP_DEBUG ? time() : AUTHORA_LOGIN_VERSION
+    );
+
     wp_enqueue_script(
         'authora-script',
         AUTHORA_LOGIN_JS . 'authora.js',
@@ -81,17 +88,21 @@ function authora_public_scripts(){
 }
 add_action( 'wp_enqueue_scripts', 'authora_public_scripts' );
 
-function admin_scripts(){
+function authora_admin_scripts($hook){
+    // Only load on plugin settings page
+    if (strpos($hook, 'authora') === false) {
+        return;
+    }
 
     wp_enqueue_style(
-        'setting-style',
+        'authora-setting-style',
         AUTHORA_LOGIN_CSS . 'setting.css',
         [],
         defined('WP_DEBUG') && WP_DEBUG ? time() : AUTHORA_LOGIN_VERSION
     );
 
     wp_enqueue_script(
-        'setting-script',
+        'authora-setting-script',
         AUTHORA_LOGIN_JS . 'setting.js',
         ['jquery'],
         defined('WP_DEBUG') && WP_DEBUG ? time() : AUTHORA_LOGIN_VERSION,
@@ -99,4 +110,4 @@ function admin_scripts(){
     );
 
 }
-add_action( 'admin_head', 'admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'authora_admin_scripts' );

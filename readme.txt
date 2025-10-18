@@ -4,7 +4,7 @@ Tags: otp, mobile login, SMS login, OTP login, WordPress authentication, login w
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 License: GPL v2.0 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,25 +101,16 @@ This plugin connects to external SMS service providers to send verification code
 The plugin supports the following SMS providers:
 
 ### SMS.ir ###
-- **Service**: SMS.ir (https://sms.ir)
-- **Purpose**: Sending SMS verification codes for login/registration.
-- **Data sent**: Mobile number, verification code, domain name (for branding).
-- **Terms of Service**: https://sms.ir/terms
-- **Privacy Policy**: https://sms.ir/privacy
+- **API Endpoint**: https://api.sms.ir/v1/send/verify
 
 ### Faraz SMS ###
-- **Service**: Faraz SMS (https://farazsms.com)
-- **Purpose**: Sending SMS verification codes for login/registration.
-- **Data sent**: Mobile number, verification code.
-- **Terms of Service**: https://farazsms.com/terms
-- **Privacy Policy**: https://farazsms.com/privacy
+- **API Endpoint**: https://api2.ippanel.com/api/v1/sms/pattern/normal/send
 
 ### Shahvar Payam ###
-- **Service**: Shahvar Payam (https://shahvarpayam.com)
-- **Purpose**: Sending SMS verification codes for login/registration.
-- **Data sent**: Mobile number, verification code.
-- **Terms of Service**: https://shahvarpayam.com/terms
-- **Privacy Policy**: https://shahvarpayam.com/privacy
+- **API Endpoint**: https://api2.ippanel.com/api/v1/sms/pattern/normal/send
+
+### IPPanel Infrastructure ###
+- **API Endpoint**: https://api2.ippanel.com/api/v1/sms/pattern/normal/send
 
 All communications with external services are done securely over HTTPS. The plugin does not store or transmit any personal data beyond what is necessary for SMS delivery.
 

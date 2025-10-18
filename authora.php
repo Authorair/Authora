@@ -1,14 +1,14 @@
 <?php
 /**
  * @package Authora
- * @version 1.7.1
+ * @version 1.7.2
  */
 /*
 Plugin Name: Authora : Easy login with mobile number
 Plugin URI: https://github.com/Rayiumir/Authora
 Description: Easy login with mobile number for WordPress.
 Author: Raymond Baghumian
-Version: 1.7.1
+Version: 1.7.2
 Author URI: https://rayium.ir
 Text Domain: authora-easy-login-with-mobile-number
 Domain Path: /languages
@@ -18,7 +18,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 defined('ABSPATH') || exit;
 
-define('AUTHORA_LOGIN_VERSION', '1.7.1');
+define('AUTHORA_LOGIN_VERSION', '1.7.2');
 
 define( 'AUTHORA_LOGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'AUTHORA_LOGIN_PATH', plugin_dir_path(__FILE__) );
