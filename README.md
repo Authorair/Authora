@@ -1,9 +1,10 @@
-<div align="center">
+<p align="center">
     <picture>
-        <img alt="Authora Logo" src="./logo/Authora.png">
+        <source media="(prefers-color-scheme: dark)" srcset="./logo/logo_light.png">
+        <source media="(prefers-color-scheme: light)" srcset="./logo/logo_dark.png">
+        <img alt="Authora Logo" src="./logo/logo_dark.png">
     </picture>
-    <p>Easy login with mobile number for WordPress</p>
-</div>
+</p>
 
 # Authora
 
