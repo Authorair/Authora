@@ -40,6 +40,41 @@ In today’s world, users are tired of lengthy registration and login forms. Aut
 ```php
 <?php echo do_shortcode("[authora-login]"); ?>
 ```
+- Use Pages
+
+```php
+<?php echo do_shortcode("[authora-login show_modal="false"]"); ?>
+or
+[authora-login show_modal="false"]
+```
+# Documentation
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" width="1000px">Title</th>
+      <th scope="col" width="1000px">Language</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <h6>Documentation English</h6>
+      </td>
+      <td>
+        <a href="./doc/SMS_DRIVER_DOCUMENTATION_EN.md">English</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h6>Documentation Persian</h6>
+      </td>
+      <td>
+        <a href="./doc/SMS_DRIVER_DOCUMENTATION_FA.md">Persian</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 # Screenshots
 
