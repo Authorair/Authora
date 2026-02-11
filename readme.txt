@@ -2,9 +2,9 @@
 Contributors: authora
 Tags: otp, mobile login, SMS login, OTP login, WordPress authentication, login with phone number, SMS verification, WooCommerce login, SMS gateway, Twilio, sms.ir, 
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.7.2
+Stable tag: 1.7.5
 License: GPL v2.0 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 

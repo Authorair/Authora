@@ -18,8 +18,11 @@
 
 
 .modal-window .modal-close {
-    left: 10px;
-    right: auto;
+    margin: 5px;
+    border: 1px solid #888484;
+    width: 30px;
+    height: 27px;
+    border-radius: 10px;
 }
 
 
