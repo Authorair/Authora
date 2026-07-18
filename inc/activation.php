@@ -14,6 +14,8 @@ function authora_activation(){
         `user_id` bigint(20) unsigned NOT NULL DEFAULT 0,
         `mobile` varchar(11) NOT NULL,
         `code` varchar(20) NOT NULL,
+        `token` varchar(64) NOT NULL DEFAULT '',
+        `attempts` smallint(5) unsigned NOT NULL DEFAULT 0,
         `message_id` bigint(20) unsigned NOT NULL DEFAULT 0,
         `price` smallint(5) unsigned NOT NULL DEFAULT 0,
         `status` varchar(20) NOT NULL DEFAULT 'pending',

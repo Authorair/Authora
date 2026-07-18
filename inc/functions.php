@@ -10,13 +10,14 @@ function authora_generate_code( $digits = 5 ){
     return $code;
 }
 
-function authora_register_code( $mobile, $code, $expired_at ){
+function authora_register_code( $mobile, $code, $token, $expired_at ){
 
     global $wpdb;
 
     $data = [
         'mobile'         => $mobile,
         'code'          => $code,
+        'token'         => $token,
         'expired_at'    => $expired_at,
         'created_at'    => current_time('mysql'),
         'updated_at'    => current_time('mysql'),
@@ -25,12 +26,12 @@ function authora_register_code( $mobile, $code, $expired_at ){
     $inserted = $wpdb->insert(
         $wpdb->authora_login,
         $data,
-        '%s'
+        [ '%s', '%s', '%s', '%s', '%s', '%s' ]
     );
 
     if( ! $inserted ){
         notificator_send_message( 'insert error for ' . $wpdb->authora_login . PHP_EOL . print_r( $data, true ) );
-        new WP_Error( 'error_insertion', 'خطا در ثبت داده' );
+        return new WP_Error( 'error_insertion', 'خطا در ثبت داده' );
     }
 
     return $wpdb->insert_id;

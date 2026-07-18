@@ -42,7 +42,7 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 if (response.success) {
                     // Store data
-                    loginToken = response.data.code;
+                    loginToken = response.data.token;
                     currentMobile = mobile;
                     
                     // Update UI
@@ -105,7 +105,7 @@ jQuery(document).ready(function($) {
                 action: 'authora_verify',
                 mobile: currentMobile,
                 code: code,
-                _wpnonce: $form.find('input[name="_wpnonce"]').val()
+                token: loginToken
             },
             success: function(response) {
                 if (response.success) {
@@ -155,7 +155,7 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 if (response.success) {
                     // Update token
-                    loginToken = response.data.code;
+                    loginToken = response.data.token;
                     
                     // Reset countdown
                     startCountdown();
