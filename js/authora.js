@@ -41,7 +41,7 @@ jQuery(document).ready(function ($) {
                     $(".authora-codes input").eq(0).focus();
 
                     $("#authora-verify input[name='mobile']").val(result.data.mobile);
-                    $("#authora-verify input[name='_wpnonce']").val(result.data._wpnonce);
+                    $("#authora-verify input[name='token']").val(result.data.token);
 
                 } else {
                     let result = xhr.responseJSON;
