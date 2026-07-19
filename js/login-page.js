@@ -105,7 +105,8 @@ jQuery(document).ready(function($) {
                 action: 'authora_verify',
                 mobile: currentMobile,
                 code: code,
-                token: loginToken
+                token: loginToken,
+                _wpnonce: authora_ajax.nonce_verify
             },
             success: function(response) {
                 if (response.success) {

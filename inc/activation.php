@@ -13,7 +13,7 @@ function authora_activation(){
         `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
         `user_id` bigint(20) unsigned NOT NULL DEFAULT 0,
         `mobile` varchar(11) NOT NULL,
-        `code` varchar(20) NOT NULL,
+        `code` varchar(255) NOT NULL,
         `token` varchar(64) NOT NULL DEFAULT '',
         `attempts` smallint(5) unsigned NOT NULL DEFAULT 0,
         `message_id` bigint(20) unsigned NOT NULL DEFAULT 0,
@@ -37,6 +37,29 @@ function authora_activation(){
     // Flush rewrite rules
     flush_rewrite_rules();
 }
+
+function authora_upgrade_db() {
+    $db_version = get_option('authora_db_version');
+    if ($db_version === AUTHORA_LOGIN_VERSION) {
+        return;
+    }
+
+    global $wpdb;
+    $table = $wpdb->authora_login;
+
+    if ($wpdb->get_var("SHOW TABLES LIKE '$table'") !== $table) {
+        update_option('authora_db_version', AUTHORA_LOGIN_VERSION);
+        return;
+    }
+
+    $column = $wpdb->get_row($wpdb->prepare("SHOW COLUMNS FROM `$table` WHERE Field = %s", 'code'));
+    if ($column && stripos($column->Type, 'varchar(20)') !== false) {
+        $wpdb->query("ALTER TABLE `$table` MODIFY `code` varchar(255) NOT NULL");
+    }
+
+    update_option('authora_db_version', AUTHORA_LOGIN_VERSION);
+}
+add_action('admin_init', 'authora_upgrade_db');
 
 // Add mobile number column to users table
 function authora_add_mobile_column($columns) {

@@ -41,7 +41,8 @@ function authora_public_scripts(){
 
     wp_localize_script( 'authora-script', 'authora', [
         'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('authora_login'),
+        'nonce' => wp_create_nonce('authora-login'),
+        'nonce_verify' => wp_create_nonce('authora-verify'),
 
         'i18n' => array(
                     'sending' => __('Sending...', 'authora-easy-login-with-mobile-number'),

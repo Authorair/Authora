@@ -113,6 +113,7 @@ function authora_login_page_scripts() {
         wp_localize_script('authora-login-page', 'authora_ajax', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('authora-login'),
+            'nonce_verify' => wp_create_nonce('authora-verify'),
             'login_url' => authora_get_login_page_url(),
             'redirect_url' => home_url()
         ));

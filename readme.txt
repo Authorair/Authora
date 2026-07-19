@@ -4,7 +4,7 @@ Tags: otp, mobile login, SMS login, OTP login, WordPress authentication, login w
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.7.7
+Stable tag: 1.7.8
 License: GPL v2.0 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,20 @@ https://github.com/Rayiumir/Authora
 3. Screenshot-3
 
 ## Changelog ##
+
+### 1.7.8 ###
+
+- Increase code column from varchar(20) to varchar(255) to fit wp_hash_password output
+- Add automatic DB upgrade for existing tables
+- Fix nonce action mismatch in enqueue.php
+- Add missing nonce to verify form and AJAX request"
+- Replace insecure rand() with cryptographically secure random_int() for OTP generation
+- Hash OTP codes using wp_hash_password() and verify with wp_check_password()
+- Prevent secure token exposure by removing it from the DOM and using JS closure storage
+- Add nonce verification to authora_verify to mitigate CSRF attacks
+- Add database index on mobile column to improve lookup performance and prevent full table scans
+- Remove legacy PHP session-based login system and obsolete login files
+- Fix JavaScript scope issues and improve AJAX error handling
 
 ### 1.7.7 ###
 
