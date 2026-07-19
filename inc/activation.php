@@ -24,6 +24,7 @@ function authora_activation(){
         `updated_at` datetime NOT NULL,
         PRIMARY KEY (`ID`),
         KEY `user_id` (`user_id`),
+        KEY `mobile` (`mobile`),
         KEY `status` (`status`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=$table_collation";
 
