@@ -19,12 +19,16 @@
 
 .modal-window .modal-close {
     margin: 5px;
-    border: 1px solid #888484;
+    border: 1px solid #ffefef;
     width: 30px;
     height: 27px;
     border-radius: 10px;
+    background: #ffefef;
 }
 
+.modal-window .modal-close svg {
+    margin-top: -23px;
+}
 
 .modal-window .authora-message svg {
     margin-left: 5px;
