@@ -3,23 +3,21 @@
 defined('ABSPATH') || exit;
 
 /**
- * تولید کد OTP با استفاده از مولد امنیت رمزنگاری شده (CSPRNG)
- */
+* Generate OTP code using Cryptographic Security Generator (CSPRNG)
+*/
 function authora_generate_code( $digits = 5 ){
     $min = 10 ** ($digits - 1);
     $max = (10 ** $digits) - 1;
-    // استفاده از random_int به جای rand برای جلوگیری از پیش‌بینی
     return random_int( $min, $max );
 }
 
 /**
- * ثبت کد در دیتابیس (کد به صورت هش شده ذخیره می‌شود)
- */
+* Register the code in the database (the code is stored in hashed form)
+*/
 function authora_register_code( $mobile, $code, $token, $expired_at ){
 
     global $wpdb;
 
-    // هش کردن کد قبل از ذخیره در دیتابیس (اگه دیتابیس هک شد، کدها لو نرن)
     $hashed_code = wp_hash_password( $code );
 
     $data = [
@@ -45,8 +43,8 @@ function authora_register_code( $mobile, $code, $token, $expired_at ){
 }
 
 /**
- * پاکسازی و استانداردسازی شماره موبایل
- */
+* Mobile number cleaning and standardization
+*/
 function sanitize_mobile( $mobile ){
     $western    = array('0','1','2','3','4','5','6','7','8','9');
     $persian    = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
