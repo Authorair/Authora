@@ -87,7 +87,7 @@ function authora_verify()
         'message'   => __('An error occurred', 'authora-easy-login-with-mobile-number')
     ];
 
-    // اضافه کردن Nonce برای جلوگیری از CSRF
+    // Adding Nonce to Prevent CSRF
     if (
         ! isset($_REQUEST['mobile']) ||
         ! isset($_REQUEST['code']) ||
@@ -110,7 +110,7 @@ function authora_verify()
     global $wpdb;
     $table_name = $wpdb->authora_login;
 
-    // استفاده از ایندکس mobile برای سرعت بالا
+    // Use mobile index for high speed
     $verify = $wpdb->get_row(
         $wpdb->prepare(
             "SELECT * FROM {$table_name} WHERE mobile = %s ORDER BY created_at DESC LIMIT 1",
@@ -123,7 +123,7 @@ function authora_verify()
         wp_send_json_error($result, 401);
     }
 
-    // بررسی توکن
+    // Token Review
     $token_valid = function_exists('hash_equals')
         ? hash_equals((string) $verify->token, $token)
         : ((string) $verify->token === $token);
@@ -143,7 +143,7 @@ function authora_verify()
         wp_send_json_error($result, 401);
     }
 
-    // بررسی کد OTP با تابع امنیتی وردپرس
+    // Verify OTP code with WordPress security function
     if (! wp_check_password($code, $verify->code)) {
         $wpdb->update(
             $table_name,
@@ -154,7 +154,7 @@ function authora_verify()
         wp_send_json_error($result, 401);
     }
 
-    // لاگین کاربر
+    // User login
     $user = getOrMakeUser($mobile);
 
     if (is_wp_error($user)) {
@@ -166,7 +166,7 @@ function authora_verify()
     wp_set_current_user($user->ID);
     wp_set_auth_cookie($user->ID);
 
-    // باطل کردن کد پس از استفاده
+    // Invalidate the code after use
     $wpdb->update(
         $wpdb->authora_login,
         [
