@@ -1,4 +1,7 @@
 jQuery(document).ready(function ($) {
+    // متغیرهای امنیتی در اسکوپ اصلی (Global درون Document Ready)
+    let authoraSecureMobile = '';
+    let authoraSecureToken = '';
 
     function close_modal() {
         $('.authora-modal-container').removeClass('open');
@@ -32,7 +35,6 @@ jQuery(document).ready(function ($) {
                 $(_resend).text(authora.i18n.sending).removeClass('active');
             },
             success: function (result) {
-                console.log(result);
                 if (result.success) {
                     countdown = result.data.duration;
                     set_time(countdown);
@@ -40,19 +42,20 @@ jQuery(document).ready(function ($) {
                     $('.authora-modal').addClass('verify');
                     $(".authora-codes input").eq(0).focus();
 
-                    $("#authora-verify input[name='mobile']").val(result.data.mobile);
-                    $("#authora-verify input[name='token']").val(result.data.token);
+                    // ذخیره امن در متغیرهای اصلی (خارج از DOM)
+                    authoraSecureMobile = result.data.mobile;
+                    authoraSecureToken = result.data.token;
+
+                    // فقط شماره موبایل برای فرم بعدی ست میشه، توکن هیچوقت تو HTML نمی‌ره
+                    $("#authora-verify input[name='mobile']").val(authoraSecureMobile);
 
                 } else {
-                    let result = xhr.responseJSON;
+                    // باگ رایموند اینجا بود که xhr تعریف نشده بود! 
+                    // چون این تابع success هست، باید از همون result استفاده کنیم
                     let message = authora.i18n.error_occurred;
-
                     if (result && result.data && result.data.message) {
                         message = result.data.message;
-                    } else if (xhr.status === 0) {
-                        message = authora.i18n.connection_error;
                     }
-
                     $(_message).addClass('active').find('span').text(message);
                 }
             },
@@ -132,6 +135,8 @@ jQuery(document).ready(function ($) {
     $(document).on('click', 'a.authora-resend.active', function (e) {
         e.preventDefault();
         if (countdown <= 0) {
+            // باطل کردن توکن قدیمی قبل از درخواست مجدد
+            authoraSecureToken = ''; 
             $('#authora-login').submit();
         }
     });
@@ -147,6 +152,9 @@ jQuery(document).ready(function ($) {
         $("#authora-verify input[name='code']").val(code);
 
         let data = $(this).serialize();
+        // تزریق امن توکن از متغیر بسته شده، به درخواست POST
+        data += '&token=' + encodeURIComponent(authoraSecureToken);
+        
         let _this = $(this);
         let _message = $(this).find('.authora-message');
         let _message_s = $(this).find('.authora-success');
@@ -161,12 +169,15 @@ jQuery(document).ready(function ($) {
                 $(_btn).attr('disabled', true);
             },
             success: function (result) {
-                console.log(result);
                 if (result.success) {
                     $(_message_s).text(result.data.message).slideDown(500);
                     location.reload();
                 } else {
-
+                    let message = authora.i18n.error_occurred;
+                    if (result && result.data && result.data.message) {
+                        message = result.data.message;
+                    }
+                    $(_message).addClass('active').find('span').text(message);
                 }
             },
             complete: function () {

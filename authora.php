@@ -48,7 +48,7 @@ require(AUTHORA_LOGIN_DRIVER . 'FarazSMS/FarazSMS.php');
 require(AUTHORA_LOGIN_DRIVER . 'ShahvarSMS/ShahvarSMS.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsDriverInterface.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsManager.php');
-require_once AUTHORA_LOGIN_INC . 'login-forms.php';
+//require_once AUTHORA_LOGIN_INC . 'login-forms.php';
 
 if(is_admin())
 {
