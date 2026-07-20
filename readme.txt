@@ -4,7 +4,7 @@ Tags: otp, mobile login, SMS login, OTP login, WordPress authentication, login w
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.7.8
+Stable tag: 1.7.9
 License: GPL v2.0 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,10 @@ https://github.com/Rayiumir/Authora
 3. Screenshot-3
 
 ## Changelog ##
+
+### 1.7.9 ###
+
+- Fix Style Modal Close SVG
 
 ### 1.7.8 ###
 
