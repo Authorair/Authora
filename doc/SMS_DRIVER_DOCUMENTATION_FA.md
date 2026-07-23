@@ -422,8 +422,8 @@ $yourprovider_sender_number = get_option('authora_yourprovider_sender_number');
 - `drivers/ShahvarSMS/` - درایور شهوار اس ام اس
 
 هر کدام از این درایورها نمونه‌های مختلفی از پیاده‌سازی API های مختلف ارائه می‌دهند.
-## تست و ع
-یب‌یابی درایور
+
+## تست و عیب‌یابی درایور
 
 ### تست دستی درایور
 
@@ -523,12 +523,3 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 4. تست و عیب‌یابی
 
 در صورت بروز مشکل، لاگ‌های WordPress و پاسخ‌های API را بررسی کنید.
-
-## مثال‌های موجود
-
-برای درک بهتر، می‌توانید از درایورهای موجود الهام بگیرید:
-
-- `drivers/SMSIR/Smsir.php` - SMS.ir driver
-- `drivers/FarazSMS/FarazSMS.php` - Faraz SMS driver
-- `drivers/ShahvarSMS/` - Shahvar SMS driver
-
